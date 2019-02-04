@@ -13,6 +13,7 @@
                     <div class="login-form">
                         <h4>@lang('Icc connect')</h4>
                         <form method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="form-group">
                                 <label>Email</label>
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>

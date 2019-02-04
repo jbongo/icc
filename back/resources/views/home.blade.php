@@ -1,46 +1,98 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Album') }}</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @yield('css')
-</head>
-<body>
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'Album') }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            @guest
-                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">@lang('Inscription')</a></li>
-            @else
-                <li class="nav-item">
-                    <a id="logout" class="nav-link" href="{{ route('logout') }}">@lang('Déconnexion')</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hide">
-                        {{ csrf_field() }}
-                    </form>
-                </li>
-            @endguest
-        </ul>
-    </div>
-</nav>
-@yield('content')
-<script src="{{ asset('js/app.js') }}"></script>
-@yield('script')
+@extends('layouts.dashboard')
+@section('header_name')
+    Tableau de bord
+@stop
+@extends('layouts.header')
+
+@include('layouts.navbar')
+
+
+@section('content')
+
+
+
+
+
+
+@stop
+@section('js-content')
 <script>
-    $(() => {
-        $('#logout').click((e) => {
-            e.preventDefault()
-            $('#logout-form').submit()
-        })
-        $('[data-toggle="tooltip"]').tooltip()
-    })
+$(function () {
+Morris.Area({
+        element: 'morris-area-chart',
+         data: [{
+            period: '2001',
+            smartphone: 0,
+            windows: 0,
+            mac: 0
+        }, {
+            period: '2002',
+            smartphone: 90,
+            windows: 60,
+            mac: 25
+        }, {
+            period: '2003',
+            smartphone: 40,
+            windows: 80,
+            mac: 35
+        }, {
+            period: '2004',
+            smartphone: 30,
+            windows: 47,
+            mac: 17
+        }, {
+            period: '2005',
+            smartphone: 150,
+            windows: 40,
+            mac: 120
+        }, {
+            period: '2006',
+            smartphone: 25,
+            windows: 80,
+            mac: 40
+        }, {
+            period: '2007',
+            smartphone: 10,
+            windows: 10,
+            mac: 10
+        }
+
+
+        ],
+        xkey: 'period',
+        ykeys: ['smartphone', 'windows', 'mac'],
+        labels: ['Leboncoin', 'LogicImmo', 'Styl\'immo'],
+        pointSize: 3,
+        fillOpacity: 0,
+        pointStrokeColors:['#55ce63', '#009efb', '#8b67c9'],
+        behaveLikeLine: true,
+        gridLineColor: '#e0e0e0',
+        lineWidth: 3,
+        hideHover: 'auto',
+        lineColors: ['#55ce63', '#009efb', '#8b67c9'],
+        resize: true
+        
+    });
+
+// LINE CHART
+ // Morris donut chart
+        
+    Morris.Donut({
+        element: 'morris-donut-chart',
+        data: [{
+            label: "Nouveaux prospects",
+            value: 12,
+
+        }, {
+            label: "En ligne",
+            value: 30
+        }, {
+            label: "En attente de validation",
+            value: 20
+        }],
+        resize: true,
+        colors:['#009efb', '#55ce63', '#8b67c9']
+    });
+ });  
 </script>
-</body>
+@endsection

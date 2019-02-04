@@ -12,6 +12,7 @@
                     <div class="login-form">
                         <h4>Créer mon compte</h4>
                         <form method="POST" action="{{ route('register')}}">
+                            @csrf
                             <div class="form-group">
                                 <label>Nom :</label>
                                 <input type="text" name="nom" class="form-control" required >
@@ -19,6 +20,10 @@
                             <div class="form-group">
                                 <label>Prénom :</label>
                                 <input type="text" name="prenom" class="form-control" required >
+                            </div>
+                            <div class="form-group">
+                                <label>Email :</label>
+                                <input type="email" name="email" class="form-control" required >
                             </div>
                             <div class="form-group">
                                 <label>Mot de passe</label>
