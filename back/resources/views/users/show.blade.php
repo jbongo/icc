@@ -26,7 +26,7 @@
                   <div class="user-profile m-t-15">
                      <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                <a href="{{route('users.index')}}" class="btn btn-warning btn-flat btn-addon  m-l-5"><i class="ti-angle-left"></i>@lang('Liste d\'utilisateurs')</a>
+                                <a href="{{route('users.index')}}" class="btn btn-warning btn-flat btn-addon  m-l-5"><i class="ti-angle-left"></i>@lang('Liste des membres')</a>
                         </div>
                        
                         <div class="col-lg-7  col-md-7 col-sm-7 col-xs-7">

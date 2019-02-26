@@ -16,7 +16,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/users','User\UserController@index')->name('users.index');
-    Route::get('/users/add','User\UserController@store')->name('users.add');
+    Route::get('/users/add','User\UserController@create')->name('users.add');
+    Route::post('/users/add','User\UserController@store')->name('users.store');
     Route::get('/users/show/{id}','User\UserController@show')->name('user.show');
     Route::get('/users/edit/{id}','User\UserController@edit')->name('user.edit');
     Route::get('/users/archive/{id}','User\UserController@archive')->name('user.archive');
